@@ -13,7 +13,9 @@ namespace TFS_Service
         {
             try
             {
-                var networkCred = new NetworkCredential(string.Empty,config.TFS_ServiceToken);
+                //  -----network credential ------- //
+                var networkCred = new NetworkCredential(config.TFS_ServiceUsername, config.TFS_ServicePassword, config.TFS_ServiceDomain);
+                VssBasicCredential credentials = new VssBasicCredential(string.Empty, config.TFS_ServiceToken);
                 var vssCred = new VssClientCredentials
                 {
                     Windows = { Credentials = networkCred }
